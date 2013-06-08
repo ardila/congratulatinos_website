@@ -16,42 +16,37 @@
             z-index: -1;
             position: absolute;
         }
+        #player_mouse_target{
+            position:absolute;
+            width:100%;
+            height:120px;
+            bottom:0;
+            background:transparent;
+        }
         #player{
            position:absolute;
            width:100%;
-           height:100px;
+           height:100%;
            bottom:0;
            background:white;
         }
         menu {
-            /* @size sets the relative size of the buttons, define before calling the buttons mixin */
-
-            /* Play */
-
-            /* Stop */
-
-            /* Fast-Forward */
-
-            /* Rewind */
-
-            /* Pause */
-
             margin: 2em auto;
-            text-align: left;
             position: relative;
+            left:10px;
         }
         menu button {
             position: relative;
             display: inline-block;
-            padding: .2em;
+            padding: .3em;
             background: transparent;
             border-style: none;
             border-radius: 10em;
-            border: 0 solid #d0d0d0;
-            width: 8em;
-            height: 8em;
-            bottom: 50px;
+            width: 3em;
+            height: 3em;
+            margin-right: 2px;
             cursor: pointer;
+            bottom: 50px;
         }
         menu button:before,
         menu button:after {
@@ -59,201 +54,88 @@
             content: " ";
         }
         menu button:active {
-            top: 0.4em;
+            bottom: 47px;
         }
         menu .play:before {
             z-index: 2;
-            top: 1.76em;
-            left: 2.88em;
+            top: 0.55em;
+            left: 0.8999999999999999em;
             width: 0;
             height: 0;
-            border: 2.4em solid transparent;
-            border-left-color: #000000;
-            border-left-width: 3.6em;
+            border: 0.75em solid transparent;
+            border-left-color: rgba(100, 100, 100, 0.8);
+            border-left-width: 1.125em;
         }
         menu .play:hover:before {
-            border-left-color: #c5a823;
+            border-left-color: rgba(0, 0, 0, 0.8);
         }
         menu .stop:before {
-            top: 2.24em;
-            left: 2.24em;
-            width: 3.76em;
-            height: 3.76em;
-            background: #000000;
+            top: 0.7000000000000001em;
+            left: 0.7000000000000001em;
+            width: 1.1749999999999998em;
+            height: 1.1749999999999998em;
+            background: rgba(100, 100, 100, 0.8);
         }
         menu .stop:hover:before {
-            background: #c5a823;
+            background: rgba(0, 0, 0, 0.8);
         }
         menu .ff:before,
         menu .ff:after {
             width: 0;
             height: 0;
-            top: 2.08em;
-            border: 2em solid transparent;
-            border-left-color: #000000;
-            border-left-width: 2.16em;
+            top: 0.65em;
+            border: 0.625em solid transparent;
+            border-left-color: rgba(100, 100, 100, 0.8);
+            border-left-width: 0.675em;
         }
         menu .ff:before {
-            left: 2.4em;
+            left: 0.75em;
         }
         menu .ff:after {
-            left: 4.528em;
+            left: 1.4149999999999998em;
             content: " ";
         }
         menu .ff:hover:before,
         menu .ff:hover:after {
-            border-left-color: #c5a823;
+            border-left-color: rgba(0, 0, 0, 0.8);
         }
         menu .rw:before,
         menu .rw:after {
             width: 0;
             height: 0;
-            top: 2.08em;
-            border: 2em solid transparent;
-            border-right-color: #000000;
-            border-right-width: 2.16em;
+            top: 0.65em;
+            border: 0.625em solid transparent;
+            border-right-color: rgba(100, 100, 100, 0.8);
+            border-right-width: 0.675em;
         }
         menu .rw:before {
-            left: 1.76em;
+            left: 0.55em;
         }
         menu .rw:after {
-            left: -0.4em;
+            left: -0.125em;
             content: " ";
         }
         menu .rw:hover:after,
         menu .rw:hover:before {
-            border-right-color: #c5a823;
+            border-right-color: rgba(0, 0, 0, 0.8);
         }
         menu .pause:before,
         menu .pause:after {
-            height: 3.76em;
-            width: 1.52em;
-            left: 2.32em;
-            top: 2.24em;
+            height: 1.1749999999999998em;
+            width: 0.475em;
+            left: 0.725em;
+            top: 0.7000000000000001em;
             display: block;
-            background-color: #000000;
+            background-color: rgba(100, 100, 100, 0.8);
         }
         menu .pause:after {
-            left: 4.32em;
+            left: 1.35em;
         }
         menu .pause:hover:before,
         menu .pause:hover:after {
-            background-color: #c5a823;
+            background-color: rgba(0, 0, 0, 0.8);
         }
-        menu.small {
-            /* Play */
 
-            /* Stop */
-
-            /* Fast-Forward */
-
-            /* Rewind */
-
-            /* Pause */
-
-        }
-        menu.small button {
-            position: relative;
-            display: inline-block;
-            padding: .6em;
-            background: transparent;
-            border-style: none;
-            border-radius: 10em;
-            width: 3em;
-            height: 3em;
-            margin-right: 20px;
-            cursor: pointer;
-        }
-        menu.small button:before,
-        menu.small button:after {
-            position: absolute;
-            content: " ";
-        }
-        menu.small button:active {
-            top: 0.15000000000000002em;
-        }
-        menu.small .play:before {
-            z-index: 2;
-            top: 0.66em;
-            left: 1.08em;
-            width: 0;
-            height: 0;
-            border: 0.8999999999999999em solid transparent;
-            border-left-color: #000000;
-            border-left-width: 1.35em;
-        }
-        menu.small .play:hover:before {
-            border-left-color: #c5a823;
-        }
-        menu.small .stop:before {
-            top: 0.8400000000000001em;
-            left: 0.8400000000000001em;
-            width: 1.41em;
-            height: 1.41em;
-            background: #000000;
-        }
-        menu.small .stop:hover:before {
-            background: #c5a823;
-        }
-        menu.small .ff:before,
-        menu.small .ff:after {
-            width: 0;
-            height: 0;
-            top: 0.78em;
-            border: 0.75em solid transparent;
-            border-left-color: #000000;
-            border-left-width: 0.81em;
-        }
-        menu.small .ff:before {
-            left: 0.8999999999999999em;
-        }
-        menu.small .ff:after {
-            left: 1.698em;
-            content: " ";
-        }
-        menu.small .ff:hover:before,
-        menu.small .ff:hover:after {
-            border-left-color: #c5a823;
-        }
-        menu.small .rw:before,
-        menu.small .rw:after {
-            width: 0;
-            height: 0;
-            top: 0.78em;
-            border: 0.75em solid transparent;
-            border-right-color: #000000;
-            border-right-width: 0.81em;
-        }
-        menu.small .rw:before {
-            left: 0.66em;
-        }
-        menu.small .rw:after {
-            left: -0.15000000000000002em;
-            content: " ";
-        }
-        menu.small .rw:hover:after,
-        menu.small .rw:hover:before {
-            border-right-color: #c5a823;
-        }
-        menu.small .pause:before,
-        menu.small .pause:after {
-            height: 1.41em;
-            width: 0.5700000000000001em;
-            left: 0.8699999999999999em;
-            top: 0.8400000000000001em;
-            display: block;
-            background-color: #000000;
-        }
-        menu.small .pause:after {
-            left: 1.62em;
-        }
-        menu.small .pause:hover:before,
-        menu.small .pause:hover:after {
-            background-color: #c5a823;
-        }
-            /*
-            The buttons mixin that defines the buttons styles, the @size must be defined to set the relative size
-            */
 
 
 
@@ -263,9 +145,9 @@
         var x;
         var y;
         var scale;
-        var xs = [.25,.3,.7,.9,.1,.5,.8,.9,.4,.3,.2,.1,.6];
-        var ys = [.8,.9,.4,.3,.2,.1,.6, .25,.3,.7,.9,.1,.5];
-        var scales = [1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5];
+        var xs = [0.149667405764967, 0.885809312638581, 0.493348115299335, 0.537694013303769, 0.75609756097561, 0.319844789356984, 0.26219512195122, 0.85920177383592, 0.882414079822616, 0.67419623059867, 0.392184035476718, 0.893500554323725, 0.554878048780488] ;
+        var ys = [0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
+        var scales = [5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814];
         var songNum;
         var I;
         var imH;
@@ -306,8 +188,8 @@
             bottom = parseFloat((.5*h-y*height));
 
             I.animate({
-                left:left,
-                bottom:bottom,
+                right:left,
+                top:bottom,
                 width:width,
                 height:height
             },3000);
@@ -319,9 +201,9 @@
                 imW = I.width();
                 imH = I.height();
             });
-            xs = [.25,.3,.7,.9,.1,.5,.8,.9,.4,.3,.2,.1,.6];
+            xs =  [.25,.3,.7,.9,.1,.5,.8,.9,.4,.3,.2,.1,.6];
             ys = [.8,.9,.4,.3,.2,.1,.6, .25,.3,.7,.9,.1,.5];
-            scales = [1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5];
+            scales = [5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814]; ;
             songNum = 0;
             I.click(function(){
                 songNum = (songNum+1)%13;
@@ -333,7 +215,20 @@
             scaleToWindow();
             $( window ).bind( "resize", scaleToWindow );
 
+            $( "#player_mouse_target" ).mousemove(
+                function( event ){
+                    $( "#player").stop();
+                    if($('#player').is(":visible")){
 
+                    }else{
+                        $( "#player" ).slideDown(300);
+                    }
+                    $( "#player").animate(3000);
+                    $( "#player").slideUp(300);
+
+
+                }
+            );
 
         });
     </script>
@@ -341,13 +236,15 @@
 <body>
 
     <img id ='image' src=http://www.congratulatinos.com/Art.jpg>
-    <div id = 'player'>
-        <menu class="small">
-            <button class="rw"></button>
-            <button id ="playpause" class="play"></button>
-            <button class="stop"></button>
-            <button class="ff"></button>
-        </menu>
+    <div id = 'player_mouse_target'>
+        <div id = 'player'>
+            <menu>
+                <button class="rw"></button>
+                <button id ="playpause" class="play"></button>
+                <button class="stop"></button>
+                <button class="ff"></button>
+            </menu>
+        </div>
     </div>
 
 </body>
