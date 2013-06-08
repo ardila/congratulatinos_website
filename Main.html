@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
+    <style type="text/css">
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+        #image {
+
+
+            position: absolute;
+        }
+    </style>
+    <title> Congratulatinos!</title>
+    <script type="text/javascript">
+        var x
+        var y
+        var scale
+        var xs = [.25,.3,.7,.9,.1,.5,.8,.9,.4,.3,.2,.1,.6];
+        var ys = [.8,.9,.4,.3,.2,.1,.6, .25,.3,.7,.9,.1,.5];
+        var scales = [1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5];
+        var songNum
+        var I
+        var imH
+        var imW
+        function positionImage(x,y){
+            //x,y are the image coordinates to center onscreen
+        }
+        function scaleToWindow() {
+            w = $(window).width();
+            h = $(window).height();
+            repositionTo(x, y, scale, w, h)
+        }
+        function repositionTo(newX, newY, newScale, w, h){
+            x = newX;
+            y = newY;
+            scale = newScale;
+            windowScale = Math.max(w/imW, h/imH)
+            width = imW*scale*windowScale;
+            height = imH*scale*windowScale;
+            left = parseFloat((.5*w-x*width));
+            bottom = parseFloat((.5*h-y*height));
+            I.css("left",left);
+            I.css("bottom",bottom);
+            I.css("width",width);
+            I.css("height",height);
+        }
+        function animateToSong(songNum){
+            I.stop();
+            x = xs[songNum];
+            y = ys[songNum];
+            scale = scales[songNum];
+            w = $(window).width();
+            h = $(window).height();
+            windowScale = Math.max(w/imW, h/imH)
+            width = imW*scale*windowScale;
+            height = imH*scale*windowScale;
+            left = parseFloat((.5*w-x*width));
+            bottom = parseFloat((.5*h-y*height));
+
+            I.animate({
+                left:left,
+                bottom:bottom,
+                width:width,
+                height:height
+            },3000);
+        }
+
+        $(document).ready(function(){
+            I = $('#image');
+            I.load(function() {
+                imW = I.width();
+                imH = I.height();
+            });
+            xs = [.25,.3,.7,.9,.1,.5,.8,.9,.4,.3,.2,.1,.6];
+            ys = [.8,.9,.4,.3,.2,.1,.6, .25,.3,.7,.9,.1,.5];
+            scales = [1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5];
+            songNum = 0;
+            I.click(function(){
+                songNum = (songNum+1)%13;
+                animateToSong(songNum)
+            });
+            x = .5;
+            y = .5;
+            scale = 1;
+            scaleToWindow();
+            $( window ).bind( "resize", scaleToWindow );
+
+
+
+        });
+    </script>
+</head>
+<body>
+
+    <img id ='image' zindex = -1 src=http://www.congratulatinos.com/Art.jpg>
+    <div id = 'player'>
+
+    </div>
+
+</body>
+</html>
