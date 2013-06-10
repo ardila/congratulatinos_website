@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="SoundManager/script/soundmanager2-nodebug.js"></script>
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
     <style type="text/css">
         body {
@@ -152,6 +153,17 @@
         var I;
         var imH;
         var imW;
+        soundManager.setup({
+            url: 'SoundManager/swf',
+            preferFlash: false,
+            onready: function(){
+                var mySound = soundManager.createSound({
+                    id: 'rain',
+                    url: 'rain.wav'
+                });
+
+            }
+        });
         function positionImage(x,y){
             //x,y are the image coordinates to center onscreen
         }
@@ -196,6 +208,7 @@
 
         $(document).ready(function(){
             I = $('#image').hide();
+            $('#player').hide();
             I.load(function() {
                 imW = I.width();
                 imH = I.height();
@@ -228,18 +241,48 @@
                         $('#player').slideUp(300);
                         timeOutSet = false;
                     },2000);
-
-
-
                 }
             );
+            $( "#player_mouse_target" ).click(
+                    function( event ){
+                        if(timeOutSet){
+                            window.clearTimeout(slideTimeout)
+                        }
+                        if(!$('#player').is(":visible")){
+                            $('#player').slideDown(300)
+                        }
+                        timeOutSet = true;
+                        slideTimeout = window.setTimeout(function(){
+                            $('#player').slideUp(300);
+                            timeOutSet = false;
+                        },2000);
+                    }
+            );
+
+            $('#playpause').click(function(){
+                if($('#playpause').attr('class')=='play'){
+                    soundManager.play('rain');
+                }else{
+                    soundManager.pause('rain')
+                }
+                console.log('Toggle') ;
+                $('#playpause').toggleClass('play');
+                $('#playpause').toggleClass('pause');
+
+            });
+
+            $('.stop').click(function(){
+                soundManager.stop('rain');
+                $('#playpause').attr('class', 'play');
+            });
+
 
         });
     </script>
 </head>
 <body>
 
-    <img id ='image' src=http://www.congratulatinos.com/betaresized.jpg>
+    <img id ='image' src=http://www.congratulatinos.com/Art.jpg>
     <div id = 'player_mouse_target'>
         <div id = 'player'>
             <menu>
@@ -253,3 +296,6 @@
 
 </body>
 </html>
+
+
+
