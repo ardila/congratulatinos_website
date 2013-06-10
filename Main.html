@@ -138,6 +138,66 @@
         menu .pause:hover:after {
             background-color: rgba(0, 0, 0, 0.8);
         }
+        #download {
+            display:none;
+            width:500px;
+            height:300px;
+            text-align:center;
+            margin-left:375px;
+            margin-top:150px;
+            margin-bottom:100px;
+            margin-right:300px;
+            position:absolute;
+            padding:15px;
+            border:1px;
+            background-color:#eee;
+        }
+        #album_art_mouse_target {
+            width:30%;
+            height:30%;
+            z-index:1;
+            margin-left:38%;
+            margin-top:10%;
+            position:absolute;
+            padding:15px;
+
+
+        }
+        #album_art{
+            text-align:center;
+            border-style:solid;
+            background-color:rgba(255,255,255,0);
+            border-color:rgba(255,255,255,0.5);
+            border-radius:12px;
+            width:100%;
+            height:100%;
+        }
+        #main_play {
+            position:relative;
+            width: 0;
+            height: 0;
+            border-top-width: 30px;
+            border-top-style: solid;
+            border-top-color: transparent;
+            border-left: 100px solid rgba(255,255,255,0.5);
+            border-bottom: 50px solid transparent;
+            top:30%;
+            margin-left:10%;
+            cursor:pointer;
+        }
+        #main_play:hover{
+            border-left: 100px solid rgba(255,255,255,0.9);
+        }
+        #main_play:active{
+            top:32%;
+        }
+        #triangle-down {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-top: 100px solid red;
+        }
 
 
 
@@ -148,6 +208,7 @@
         var x;
         var y;
         var scale;
+        var songs;
         var xs;
         var ys;
         var scales;
@@ -183,12 +244,27 @@
             var windowScale = Math.max(w/imW, h/imH);
             W = imW*scale*windowScale;
             H = imH*scale*windowScale;
-            var left = parseFloat((.5*w-x*width));
-            var bottom = parseFloat((.5*h-(1-y)*height));
+            var left = parseFloat((.5*w-x*W));
+            var bottom = parseFloat((.5*h-(1-y)*H));
             I.css("left",left);
             I.css("bottom",bottom);
             I.css("width",W);
             I.css("height",H);
+            $('#album_art_mouse_target').css('width',W/3);
+            $('#album_art_mouse_target').css('height',H/3);
+            $('#album_art_mouse_target').css('left','50%');
+            $('#album_art_mouse_target').css('top','50%');
+            $('#album_art_mouse_target').css('margin-left',-W/6);
+            $('#album_art_mouse_target').css('margin-top',-W/6);
+            var playSize = w/18;
+            $('#main_play').css('border-top-width',playSize);
+            $('#main_play').css('border-left-width',2*playSize);
+            $('#main_play').css('border-bottom-width',playSize);
+            $('#album_art_mouse_target').css('height',H/3);
+            $('#album_art_mouse_target').css('left','50%');
+            $('#album_art_mouse_target').css('top','50%');
+            $('#album_art_mouse_target').css('margin-left',-W/6);
+            $('#album_art_mouse_target').css('margin-top',-W/6);
         }
         function animateToSong(songNum){
             I.stop();
@@ -200,8 +276,8 @@
             var windowScale = Math.max(w/imW, h/imH);
             W = imW*scale*windowScale;
             H = imH*scale*windowScale;
-            left = parseFloat((.5*w-x*width));
-            bottom = parseFloat((.5*h-(1-y)*height));
+            left = parseFloat((.5*w-x*W));
+            bottom = parseFloat((.5*h-(1-y)*H));
             I.animate({
                 left:left,
                 bottom:bottom,
@@ -213,16 +289,36 @@
         $(document).ready(function(){
             I = $('#image').hide();
             $('#player').hide();
+            $('#album_art').hide();
+            albumTimeoutSet = false;
+
+            $('#album_art_mouse_target').mousemove(function(){
+
+                if(albumTimeoutSet){
+
+                    window.clearTimeout(albumTimeout)
+                }
+                if(!$('#album_art').is(":visible")){
+
+                    $('#album_art').fadeIn("fast")
+                }
+                albumTimeoutSet = true;
+                albumTimeout = window.setTimeout(function(){
+                    $('#album_art').fadeOut("fast");
+                    albumTimeoutSet = false;
+                },2000);
+            });
             I.load(function() {
                 imW = I.width();
                 imH = I.height();
                 I.show();
                 scaleToWindow();
             });
-            xs = [ 0.149667405764967, 0.885809312638581, 0.493348115299335, 0.537694013303769, 0.75609756097561, 0.319844789356984, 0.26219512195122, 0.85920177383592, 0.882414079822616, 0.67419623059867, 0.392184035476718, 0.893500554323725, 0.554878048780488];
-            ys = [0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
-            scales = [5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814]; ;
+            xs = [.5, 0.149667405764967, 0.885809312638581, 0.493348115299335, 0.537694013303769, 0.75609756097561, 0.319844789356984, 0.26219512195122, 0.85920177383592, 0.882414079822616, 0.67419623059867, 0.392184035476718, 0.893500554323725, 0.554878048780488];
+            ys = [.5, 0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
+            scales = [1, 5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814]; ;
             songNum = -1;
+            songs = ['rain','rain','rain','rain','rain','rain','rain','rain','rain','rain','rain','rain','rain']
             I.click(function(){
                 songNum = (songNum+1)%13;
                 animateToSong(songNum);
@@ -231,20 +327,31 @@
             y = .5;
             scale = 1;
             $( window ).bind( "resize", scaleToWindow );
+            mainPlayHit = false;
+            $('#main_play').click(function(){
+                $('#album_art_mouse_target').fadeOut('300')
+                songNum = 1
+                soundManager.play(songs[songNum])
+                $('#player').slideDown(300)
+                $('#playpause').attr('class', 'pause');
+                mainPlayHit = true;
+            });
             timeOutSet = false;
             $( "#player_mouse_target" ).mousemove(
                 function( event ){
-                    if(timeOutSet){
-                       window.clearTimeout(slideTimeout)
+                    if(mainPlayHit){
+                        if(timeOutSet){
+                           window.clearTimeout(slideTimeout)
+                        }
+                        if(!$('#player').is(":visible")){
+                            $('#player').slideDown(300)
+                        }
+                        timeOutSet = true;
+                        slideTimeout = window.setTimeout(function(){
+                            $('#player').slideUp(300);
+                            timeOutSet = false;
+                        },2000);
                     }
-                    if(!$('#player').is(":visible")){
-                        $('#player').slideDown(300)
-                    }
-                    timeOutSet = true;
-                    slideTimeout = window.setTimeout(function(){
-                        $('#player').slideUp(300);
-                        timeOutSet = false;
-                    },2000);
                 }
             );
             $( "#player_mouse_target" ).click(
@@ -265,11 +372,11 @@
 
             $('#playpause').click(function(){
                 if($('#playpause').attr('class')=='play'){
-                    soundManager.play('rain');
+                    soundManager.play(songs[songNum]);
                 }else{
-                    soundManager.pause('rain')
+                    soundManager.pause(songs[songNum])
                 }
-                console.log('Toggle') ;
+
                 $('#playpause').toggleClass('play');
                 $('#playpause').toggleClass('pause');
 
@@ -278,6 +385,12 @@
             $('.stop').click(function(){
                 soundManager.stop('rain');
                 $('#playpause').attr('class', 'play');
+                $('#player').slideUp(300);
+                mainPlayHit = false;
+                songNum = 0;
+                animateToSong(songNum);
+                $('#album_art_mouse_target').fadeIn('300')
+
             });
 
 
@@ -287,6 +400,13 @@
 <body>
 
     <img id ='image' src=http://www.congratulatinos.com/Art.jpg>
+    <div id ='download'></div>
+    <div id ='album_art_mouse_target'>
+        <div id='album_art'>
+            <div id = 'main_play'>
+            </div>
+        </div>
+    </div>
     <div id = 'player_mouse_target'>
         <div id = 'player'>
             <menu>
