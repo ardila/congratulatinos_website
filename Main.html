@@ -153,6 +153,8 @@
         var I;
         var imH;
         var imW;
+		var W;
+		var H;
         soundManager.setup({
             url: 'SoundManager/swf',
             preferFlash: false,
@@ -177,14 +179,14 @@
             y = newY;
             scale = newScale;
             var windowScale = Math.max(w/imW, h/imH);
-            var width = imW*scale*windowScale;
-            var height = imH*scale*windowScale;
+            W = imW*scale*windowScale;
+            H = imH*scale*windowScale;
             var left = parseFloat((.5*w-x*width));
             var bottom = parseFloat((.5*h-(1-y)*height));
             I.css("left",left);
             I.css("bottom",bottom);
-            I.css("width",width);
-            I.css("height",height);
+            I.css("width",W);
+            I.css("height",H);
         }
         function animateToSong(songNum){
             I.stop();
@@ -194,15 +196,15 @@
             w = $(window).width();
             h = $(window).height();
             var windowScale = Math.max(w/imW, h/imH);
-            width = imW*scale*windowScale;
-            height = imH*scale*windowScale;
+            W = imW*scale*windowScale;
+            H = imH*scale*windowScale;
             left = parseFloat((.5*w-x*width));
             bottom = parseFloat((.5*h-(1-y)*height));
             I.animate({
                 left:left,
                 bottom:bottom,
-                width:width,
-                height:height
+                width:W,
+                height:H
             },3000);
         }
 
