@@ -2,17 +2,32 @@
 <html>
 <head>
   <title>Congratulatinos!</title>
+
+  <!-- js includes begin -->
   <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="SoundManager/script/soundmanager2-nodebug.js"></script>
-    
+  <script type="text/javascript" src="js/main.js"></script>
+  <!-- js includes end -->
+
+  <!-- css imports begin -->
   <style type="text/css"> @import url("css/style.css"); </style>
+  <!-- css imports end -->
+
+  <meta charset="UTF-8">
+
   <title> Congratulatinos!</title>
 </head>
 <body>
   <img id="image" src="http://www.congratulatinos.com/Art.jpg">
-  <div id='player_mouse_target'>
-    <div id='player'>
+    <div id = "player_mouse_target">
+      <div id = "player">
+        <menu>
+          <button class="rw"></button>
+          <button id ="playpause" class="play"></button>
+          <button class="stop"></button>
+          <button class="ff"></button>
+        </menu>
+      </div>
     </div>
   </div>
 </body>
