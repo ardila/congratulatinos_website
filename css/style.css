@@ -6,6 +6,7 @@
     overflow: hidden;
 }
 #image {
+
     z-index: -1;
     position: absolute;
 }
@@ -152,6 +153,8 @@ menu .pause:hover:after {
     margin-top:10%;
     position:absolute;
     padding:15px;
+
+
 }
 #album_art{
     text-align:center;
@@ -188,3 +191,4 @@ menu .pause:hover:after {
     border-right: 50px solid transparent;
     border-top: 100px solid red;
 }
+
