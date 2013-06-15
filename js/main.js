@@ -15,12 +15,19 @@ soundManager.setup({
     url: 'SoundManager/swf',
     preferFlash: false,
     onready: function(){
-        for(song_name in songs){}
-        soundManager.createSound({
-            id: song_name,
-            url: song_name+'.wav'
-        });
+        for(song_name in songs){
+            s = soundManager.createSound({
+                id: song_name,
+                url: song_name+'.mp3',
+                whileplaying: function(){
+                    updateSeekbar();
+                },
+                whileloading: function(){
+                    updateSeekbar();
+                }
+            });
 
+        }
     }
 });
 
