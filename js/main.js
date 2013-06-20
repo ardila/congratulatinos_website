@@ -55,10 +55,14 @@ function repositionTo(newX, newY, newScale, w, h){
     $('#album_art_mouse_target').css('top','50%');
     $('#album_art_mouse_target').css('margin-left',-W/6);
     $('#album_art_mouse_target').css('margin-top',-W/6);
-    var playSize = w/18;
+    var playSize = W/18;
     $('#main_play').css('border-top-width',playSize);
-    $('#main_play').css('border-left-width',2*playSize);
+    $('#main_play').css('border-left-width',1.6*playSize);
     $('#main_play').css('border-bottom-width',playSize);
+    var downloadSize = W/18;
+    $('#triangle_down').css('border-left-width',downloadSize);
+    $('#triangle_down').css('border-right-width',downloadSize);
+    $('#triangle_down').css('border-top-width',1*downloadSize);
     $('#album_art_mouse_target').css('height',H/3);
     $('#album_art_mouse_target').css('left','50%');
     $('#album_art_mouse_target').css('top','50%');
@@ -124,6 +128,11 @@ $(document).ready(function(){
             albumTimeoutSet = false;
         },2000);
     });
+    $('#download_button').click(function () {
+        $('#download_frame').fadeIn('slow');
+        $('#album_art').hide();
+
+    });
     I.load(function() {
         imW = I.width();
         imH = I.height();
@@ -157,6 +166,14 @@ $(document).ready(function(){
         $('#player').slideDown(300)
         $('#playpause').attr('class', 'pause');
         mainPlayHit = true;
+    });
+    $('#download_button').mouseenter(function(){
+       $('#triangle_down').css('border-top-color', 'rgba(255,255,255,.9)');
+       $('#rectangle').css('background-color','rgba(255,255,255,.9)');
+        $('#download_button').mouseleave(function(){
+            $('#triangle_down').css('border-top-color', 'rgba(255,255,255,.5)');
+            $('#rectangle').css('background-color','rgba(255,255,255,.5)');
+        });
     });
     timeOutSet = false;
     $( "#player_mouse_target" ).mousemove(
