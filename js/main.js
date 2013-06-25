@@ -15,15 +15,23 @@ soundManager.setup({
     url: 'SoundManager/swf',
     preferFlash: false,
     onready: function(){
-        for(song_name in songs){
+        for(i in songs){
+            var song_name = songs[i];
+            console.log(songs[i]);
             s = soundManager.createSound({
                 id: song_name,
-                url: song_name+'.mp3',
+                url: 'http://www.congratulatinos.com/Congratulatinos/'+song_name+'.mp3',
                 whileplaying: function(){
-                    updateSeekbar();
+                    updateSeekbar(this.position, this.durationEstimate, this.buffered);
                 },
                 whileloading: function(){
-                    updateSeekbar();
+                    updateSeekbar(this.position, this.durationEstimate, this.buffered);
+                },
+                onfinish: function(){
+                    if(i<13){
+                        songNum = songNum+1;
+                        soundManager.play(songs[songNum])
+                    }
                 }
             });
 
@@ -55,11 +63,11 @@ function repositionTo(newX, newY, newScale, w, h){
     $('#album_art_mouse_target').css('top','50%');
     $('#album_art_mouse_target').css('margin-left',-W/6);
     $('#album_art_mouse_target').css('margin-top',-W/6);
-    var playSize = W/18;
+    var playSize = W/18.5;
     $('#main_play').css('border-top-width',playSize);
     $('#main_play').css('border-left-width',1.6*playSize);
     $('#main_play').css('border-bottom-width',playSize);
-    var downloadSize = W/18;
+    var downloadSize = W/19;
     $('#triangle_down').css('border-left-width',downloadSize);
     $('#triangle_down').css('border-right-width',downloadSize);
     $('#triangle_down').css('border-top-width',1*downloadSize);
@@ -69,28 +77,33 @@ function repositionTo(newX, newY, newScale, w, h){
     $('#album_art_mouse_target').css('margin-left',-W/6);
     $('#album_art_mouse_target').css('margin-top',-W/6);
 }
-function updateSeekbar(){
-    sound = songManager.getSoundById(songs[songNum])
-    position = sound.position;
-    if(sound.loaded){
-        duration = sound.duration;
-    }else{
-        duration = sound.durationEstimate;
-
-    }
+var existingRegions = {};
+function updateSeekbar(position, duration, buffered){
     playFraction =  parseFloat(position)/duration;
-    buffered = sound.buffered;
-    for(region in buffered){
-        //TODO:Code to draw each section of buffered
+//    console.log($('#progress').width())
+    $('#progress').css('width', playFraction*100+'%');
+
+    for(var i in buffered){
+        region = buffered[i];
+        if(i in existingRegions){
+            regionDiv = $('#buffer'+i)
+        }else{
+            existingRegions[i] = true;
+            var regionDiv = jQuery('<div/>', {id:'#buffer'+i, class: 'buffered'});
+            $('#seekbar').append(regionDiv)
+        }
+        regionDiv.css('left',region.start/duration*100+'%');
+        regionDiv.css('right',region.start/duration*100+'%')
+
     }
 
 }
 
 function animateToSong(songNum){
     I.stop();
-    x = xs[songNum];
-    y = ys[songNum];
-    scale = scales[songNum];
+    x = xs[songNum+1];
+    y = ys[songNum+1];
+    scale = scales[songNum+1];
     w = $(window).width();
     h = $(window).height();
     var windowScale = Math.max(w/imW, h/imH);
@@ -112,21 +125,11 @@ $(document).ready(function(){
     $('#album_art').hide();
     albumTimeoutSet = false;
 
-    $('#album_art_mouse_target').mousemove(function(){
-
-        if(albumTimeoutSet){
-
-            window.clearTimeout(albumTimeout)
-        }
-        if(!$('#album_art').is(":visible")){
-
-            $('#album_art').fadeIn("fast")
-        }
-        albumTimeoutSet = true;
-        albumTimeout = window.setTimeout(function(){
-            $('#album_art').fadeOut("fast");
-            albumTimeoutSet = false;
-        },2000);
+    $('#album_art_mouse_target').mouseenter(function(){
+        $('#album_art').fadeIn("fast")
+        $('#album_art_mouse_target').mouseleave(function(){
+            $('#album_art').fadeOut("fast")
+        });
     });
     $('#download_button').click(function () {
         $('#download_frame').fadeIn('slow');
@@ -143,7 +146,7 @@ $(document).ready(function(){
     ys = [.5, 0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
     scales = [1, 5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814]; ;
     songNum = 0;
-    songs = ['album','Carmen','Bittersunset Red','More Soul','Ghost In The Machine','Stairwell','Robber Barons', 'Protocholic', 'Cloudbreak','Underwater Voyage','How You Want It','Abandon Ship','Chinese Room', 'Baktun']
+    songs = ['Carmen','Bitter_Sunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun']
     $('#ff').click(function(){
         songNum = (songNum+1)%13;
         animateToSong(songNum);
@@ -160,16 +163,16 @@ $(document).ready(function(){
     mainPlayHit = false;
     $('#main_play').click(function(){
         $('#album_art_mouse_target').fadeOut('300')
-        songNum = 1
-        soundManager.play(songs[songNum])
-        animateToSong(1)
+        songNum = 0;
+        soundManager.play(songs[songNum]);
+        animateToSong(0)
         $('#player').slideDown(300)
         $('#playpause').attr('class', 'pause');
         mainPlayHit = true;
     });
     $('#download_button').mouseenter(function(){
-       $('#triangle_down').css('border-top-color', 'rgba(255,255,255,.9)');
-       $('#rectangle').css('background-color','rgba(255,255,255,.9)');
+        $('#triangle_down').css('border-top-color', 'rgba(255,255,255,.9)');
+        $('#rectangle').css('background-color','rgba(255,255,255,.9)');
         $('#download_button').mouseleave(function(){
             $('#triangle_down').css('border-top-color', 'rgba(255,255,255,.5)');
             $('#rectangle').css('background-color','rgba(255,255,255,.5)');
@@ -210,7 +213,7 @@ $(document).ready(function(){
     );
 
     $('#playpause').click(function(){
-        soundManager.togglePause(currentSong)
+        soundManager.togglePause(songs[songNum])
 
         $('#playpause').toggleClass('play');
         $('#playpause').toggleClass('pause');
@@ -222,8 +225,9 @@ $(document).ready(function(){
         $('#playpause').attr('class', 'play');
         $('#player').slideUp(300);
         mainPlayHit = false;
-        songNum = 0;
-        animateToSong(songNum);
+        songNum = -1;
+        animateToSong(-1);
+        scaleToWindow();
         setTimeout(function(){
             $('#album_art_mouse_target').fadeIn('300')
         }, 3000);
@@ -262,6 +266,14 @@ $(document).ready(function(){
         }
 
     });
+    $('#seekbar').mousedown(function(e){
+        sound = soundManager.getSoundById(songs[songNum]);
+        var newPos = Math.round((e.pageX - $('#seekbar').offset().left) / $('#seekbar').width() * sound.durationEstimate);
+        //if(newPos<sound.position){
+            sound.setPosition(newPos);
+        //}
+    });
+
 
 
 
