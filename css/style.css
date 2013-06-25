@@ -39,7 +39,6 @@ menu button {
     padding: .3em;
     background: transparent;
     border-style: none;
-    border-radius: 0em;
     width: 1.5em;
     height: 3em;
     margin-right: 2px;
@@ -179,7 +178,7 @@ menu .pause:hover:after {
     border-bottom: 50px solid transparent;
     top:32%;
     margin-left:16%;
-    margin-top:0%;
+    margin-top:0;
     cursor:pointer;
 }
 #main_play:hover{
@@ -209,16 +208,16 @@ menu .pause:hover:after {
     border-right: 75px solid transparent;
     border-top: 90px solid rgba(255,255,255,0.5);
     left:7%;
-    top:0%;
+    top:0;
 }
 #rectangle{
     position:relative;
     left: 22%;
     width: 34%;
     height: 33%;
-    bottom: 0%;
+    bottom: 0;
     background: rgba(255,255,255,0.5);
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px;
 }
 
 #seekbar{
@@ -241,11 +240,12 @@ menu .pause:hover:after {
     background-color: #000000;
     border-top-right-radius:1em;
     border-bottom-right-radius:1em;
-    border-top-left-radius:0em;
-    border-bottom-left-radius:0em;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
     top:0;
     left:0;
     z-index:2;
+    cursor:pointer;
 
 }
 .buffered{

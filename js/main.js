@@ -70,7 +70,7 @@ function repositionTo(newX, newY, newScale, w, h){
     var downloadSize = W/19;
     $('#triangle_down').css('border-left-width',downloadSize);
     $('#triangle_down').css('border-right-width',downloadSize);
-    $('#triangle_down').css('border-top-width',1*downloadSize);
+    $('#triangle_down').css('border-top-width',downloadSize);
     $('#album_art_mouse_target').css('height',H/3);
     $('#album_art_mouse_target').css('left','50%');
     $('#album_art_mouse_target').css('top','50%');
@@ -126,7 +126,7 @@ $(document).ready(function(){
     albumTimeoutSet = false;
 
     $('#album_art_mouse_target').mouseenter(function(){
-        $('#album_art').fadeIn("fast")
+        $('#album_art').fadeIn("fast");
         $('#album_art_mouse_target').mouseleave(function(){
             $('#album_art').fadeOut("fast")
         });
@@ -144,9 +144,9 @@ $(document).ready(function(){
     });
     xs = [.5, 0.149667405764967, 0.885809312638581, 0.493348115299335, 0.537694013303769, 0.75609756097561, 0.319844789356984, 0.26219512195122, 0.85920177383592, 0.882414079822616, 0.67419623059867, 0.392184035476718, 0.893500554323725, 0.554878048780488];
     ys = [.5, 0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
-    scales = [1, 5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814]; ;
+    scales = [1, 5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814];
     songNum = 0;
-    songs = ['Carmen','Bitter_Sunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun']
+    songs = ['Carmen','Bitter_Sunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun'];
     $('#ff').click(function(){
         songNum = (songNum+1)%13;
         animateToSong(songNum);
@@ -162,11 +162,11 @@ $(document).ready(function(){
     $( window ).bind( "resize", scaleToWindow );
     mainPlayHit = false;
     $('#main_play').click(function(){
-        $('#album_art_mouse_target').fadeOut('300')
+        $('#album_art_mouse_target').fadeOut('300');
         songNum = 0;
         soundManager.play(songs[songNum]);
-        animateToSong(0)
-        $('#player').slideDown(300)
+        animateToSong(0);
+        $('#player').slideDown(300);
         $('#playpause').attr('class', 'pause');
         mainPlayHit = true;
     });
@@ -269,9 +269,9 @@ $(document).ready(function(){
     $('#seekbar').mousedown(function(e){
         sound = soundManager.getSoundById(songs[songNum]);
         var newPos = Math.round((e.pageX - $('#seekbar').offset().left) / $('#seekbar').width() * sound.durationEstimate);
-        //if(newPos<sound.position){
+        if(newPos<sound.position){
             sound.setPosition(newPos);
-        //}
+        }
     });
 
 
