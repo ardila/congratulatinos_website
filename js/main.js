@@ -14,26 +14,59 @@ var H;
 soundManager.setup({
     url: 'SoundManager/swf',
     preferFlash: false,
+    useFlashBlock: false,
+    useHighPerformance: true,
+    wmode: 'transparent',
+    useFastPolling: true,
     onready: function(){
         for(i in songs){
             var song_name = songs[i];
-            console.log(songs[i]);
-            s = soundManager.createSound({
-                id: song_name,
-                url: 'http://www.congratulatinos.com/Congratulatinos/'+song_name+'.mp3',
-                whileplaying: function(){
-                    updateSeekbar(this.position, this.durationEstimate, this.buffered);
-                },
-                whileloading: function(){
-                    updateSeekbar(this.position, this.durationEstimate, this.buffered);
-                },
-                onfinish: function(){
-                    if(i<13){
+            if(i<12){
+                s = soundManager.createSound({
+                    id: song_name,
+                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.wav',
+                    whileplaying: function(){
+                        updateSeekbar(this.position, this.durationEstimate, this.buffered);
+                    },
+                    whileloading: function(){
+                        updateSeekbar(this.position, this.durationEstimate, this.buffered);
+                    },
+                    onfinish: function(){
                         songNum = songNum+1;
-                        soundManager.play(songs[songNum])
+                        soundManager.play(songs[songNum]);
+                        animateToSong(songNum);
                     }
-                }
-            });
+                });
+            }else{
+                s = soundManager.createSound({
+                    id: song_name,
+                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.wav',
+                    whileplaying: function(){
+                        updateSeekbar(this.position, this.durationEstimate, this.buffered);
+                    },
+                    whileloading: function(){
+                        updateSeekbar(this.position, this.durationEstimate, this.buffered);
+                    },
+                    onfinish: function(){
+                        soundManager.stopAll();
+                        $('#playpause').attr('class', 'play');
+                        $('#player').slideUp(300);
+                        mainPlayHit = false;
+                        songNum = -1;
+                        animateToSong(-1);
+                        scaleToWindow();
+                        setTimeout(function(){
+                            $('#album_art_mouse_target').fadeIn('300')
+                        }, 3000);
+                        albumTimeoutSet = true;
+                        albumTimeout = window.setTimeout(function(){
+                            $('#album_art').fadeOut("fast");
+                            albumTimeoutSet = false;
+                        },2000);
+                    }
+                });
+            }
+
 
         }
     }
@@ -240,15 +273,31 @@ $(document).ready(function(){
 
     $('.ff').click(function(){
         soundManager.stopAll();
-
-        songNum ++;
-        if($('#playpause').is('.pause')){
-
+        if(songNum< 12){
+            songNum ++;
             soundManager.play(songs[songNum]);
+            if($('#playpause').is('.play')){
+                soundManager.pause(songs[songNum]);
+            }
+            animateToSong(songNum)
+        }else{
+            soundManager.stopAll();
+            $('#playpause').attr('class', 'play');
+            $('#player').slideUp(300);
+            mainPlayHit = false;
+            songNum = -1;
+            animateToSong(-1);
+            scaleToWindow();
+            setTimeout(function(){
+                $('#album_art_mouse_target').fadeIn('300')
+            }, 3000);
+            albumTimeoutSet = true;
+            albumTimeout = window.setTimeout(function(){
+                $('#album_art').fadeOut("fast");
+                albumTimeoutSet = false;
+            },2000);
         }
 
-
-        animateToSong(songNum)
     });
 
     $('.rw').click(function(){
@@ -256,23 +305,41 @@ $(document).ready(function(){
 
         if(soundManager.getSoundById(songs[songNum]).position < 3000){
             soundManager.stopAll();
-            songNum --;
-            if($('#playpause').is('.pause')){
-                soundManager.play(songs[songNum]);
+            if(songNum>0){
+                songNum --;
+            }
+
+            soundManager.play(songs[songNum]);
+            if($('#playpause').is('.play')){
+                soundManager.pause(songs[songNum])
             }
             animateToSong(songNum)
         }else{
-            soundManager.setPosition(0);
+            soundManager.getSoundById(songs[songNum]).setPosition(0);
         }
 
     });
     $('#seekbar').mousedown(function(e){
-        sound = soundManager.getSoundById(songs[songNum]);
+        var sound = soundManager.getSoundById(songs[songNum]);
         var newPos = Math.round((e.pageX - $('#seekbar').offset().left) / $('#seekbar').width() * sound.durationEstimate);
-        if(newPos<sound.position){
-            sound.setPosition(newPos);
-        }
+        playFromPoint(sound, newPos)
     });
+    function playFromPoint(sound, offset) {
+        if (!sound.isHTML5 && !sound.readyState) {
+            // sound hasn't started loading yet.
+            sound.load({
+                whileloading: function() {
+                    if (!this.playState && this.duration > offset + 1000) {
+                        // we've loaded enough that this should work. Go!
+                        sound.setPosition(offset);
+                    }
+                }
+            });
+        } else {
+            // this function has already been called (or, it's an HTML5 sound.)
+            sound.setPosition(offset);
+        }
+    }
 
 
 
