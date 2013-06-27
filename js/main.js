@@ -31,10 +31,13 @@ soundManager.setup({
                     whileloading: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
+                    onbeforefinish: function(){
+                        soundManager.load(songs[songNum+1]);
+                    },
                     onfinish: function(){
                         songNum = songNum+1;
-                        soundManager.play(songs[songNum]);
                         animateToSong(songNum);
+                        soundManager.play(songs[songNum]);
                     }
                 });
             }else{
@@ -115,7 +118,7 @@ function updateSeekbar(position, duration, buffered){
     playFraction =  parseFloat(position)/duration;
 //    console.log($('#progress').width())
     $('#progress').css('width', playFraction*100+'%');
-
+    $('#song-title').html(songs[songNum].replace(/_/g, ' ').toUpperCase());
     for(var i in buffered){
         region = buffered[i];
         if(i in existingRegions){

@@ -21,7 +21,15 @@
 <body>
 
 <img id ='image' src=Final_Art_450dpi.jpg>
-<div id ='download_frame'></div>
+<div id ='download_frame'>
+    <form name="myWebForm" action="myServerSideScript.php" method="post">
+        <input type="text" /> Email for download link<br />
+        <input type="checkbox" /> Bug me for shows and stuff<br />
+        <input type="submit" value="FREE!" style="font-size: 4em"/>
+        <input type="submit" value="PAY!" style="font-size: 4em"/>
+        <input type="submit" value="PSYCH!" style="font-size: 4em"/>
+    </form>
+</div>
 <div id ='album_art_mouse_target'>
     <div id='album_art'>
         <div id = 'main_play'></div>
@@ -45,7 +53,7 @@
         <div id = 'seekbar'>
             <div id = 'progress'></div>
         </div>
-        <div id ='song-title'>TEST</div>
+        <div id ='song-title'></div>
 
     </div>
 </div>
