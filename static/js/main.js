@@ -155,7 +155,7 @@ function animateToSong(songNum){
 }
 
 $(document).ready(function(){
-    I = $('#image').hide();
+    I = $('#background_image').hide();
     $('#player').hide();
     $('#album_art').hide();
     albumTimeoutSet = false;
@@ -166,11 +166,7 @@ $(document).ready(function(){
             $('#album_art').fadeOut("fast")
         });
     });
-    $('#download_button').click(function () {
-        $('#download_frame').fadeIn('slow');
-        $('#album_art').hide();
 
-    });
     I.load(function() {
         imW = I.width();
         imH = I.height();
@@ -201,7 +197,7 @@ $(document).ready(function(){
         songNum = 0;
         soundManager.play(songs[songNum]);
         animateToSong(0);
-        $('#player').slideDown(300);
+        //$('#player').slideDown(300);
         $('#playpause').attr('class', 'pause');
         mainPlayHit = true;
     });

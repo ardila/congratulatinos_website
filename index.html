@@ -7,9 +7,11 @@
     <script type="text/javascript" src="static/lib/jquery-2.0.2.min.js"></script>
     <script type="text/javascript" src="static/lib/SoundManager/script/soundmanager2-nodebug.js"></script>
     <script type="text/javascript" src="static/js/main.js"></script>
+    <script type="text/javascript" src="static/lib/bootstrap/js/bootstrap.js"></script>
     <!-- js includes end -->
 
     <!-- css imports begin -->
+    <style type="text/css"> @import url("static/lib/bootstrap/css/bootstrap.css"); </style>
     <style type="text/css"> @import url("static/css/style.css"); </style>
     <!-- css imports end -->
 
@@ -18,20 +20,21 @@
 </head>
 <body>
 
-<img id ='image' src=static/img/Final_Art_450dpi.jpg>
-<div id ='download_frame'></div>
+<img id ='background_image' src=static/img/Final_Art_450dpi.jpg>
+
 <div id ='album_art_mouse_target'>
     <div id='album_art'>
         <div id = 'main_play'></div>
-        <div id = 'download_button'>
-            <div id = 'rectangle'></div>
-            <div id = 'triangle_down'></div>
+        <div id = 'download_button' href="#download_modal" data-toggle="modal">
+            <div id ='rectangle'></div>
+            <div id='triangle_down'></div>
         </div>
     </div>
 </div>
+
 <div id = 'player_mouse_target'>
     <div id = 'player'>
-        <div id ='song_title'>TEST</div>
+        <div id ='song_title'></div>
         <menu>
             <button class="rw"></button>
             <button id ="playpause" class="play"></button>
@@ -45,6 +48,40 @@
 </div>
 
 
+<div id="download_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Join the Congratulatinos Fan Club!</h3>
+    </div>
+    
+    <div class="modal-body">
+        <p>This is where you write something nice so people will donate you money</p>
+
+        <button class="btn-warning">Donate Via Paypal Button</button>
+        
+        <hr>
+        <form>
+          <fieldset>
+            <label>Name</label>
+            <input type="text" placeholder="John Smith…">
+            <hr>
+            <label>Emal Address</label>
+            <input type="text" placeholder="i_love_congratulatinos@gmail.com">
+            <hr>
+            <label class="checkbox">
+                <input type="checkbox"> Save music to file
+            </label>
+
+          </fieldset>
+        </form>
+
+    </div>
+  
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Download</button>
+    </div>
+</div>
 </body>
 </html>
 

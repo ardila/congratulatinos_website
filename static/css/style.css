@@ -6,19 +6,20 @@
     overflow: hidden;
 }
 
+img {
+    max-width: none;
+}
+
 #song_title{
     position:absolute;
-    bottom: 1.3em;
+    bottom: 1.5em;
     font-size: 40px;
     font-style: bold;
     font-family: helvetica;
     color: white;
-    /*float:right;
-    font-size: 40pt;
-    align: center;
-    text-align:left;*/
 }
-#image {
+
+#background_image {
 
     z-index: -1;
     position: absolute;
@@ -39,12 +40,14 @@
     background:white;
     z-index: 1;
 }
+
 menu {
-    /*margin: 2em auto;*/
-    float:left;
+    /*margin: 2em auto;
     position: relative;
     left:0;
-    bottom:0;
+    bottom:0;*/
+    float:left;
+    margin-left: -30px;
 }
 menu button {
     position: relative;
@@ -145,6 +148,8 @@ menu .pause:hover:before,
 menu .pause:hover:after {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+/*
 #download_frame {
     display:none;
     position:absolute;
@@ -157,7 +162,7 @@ menu .pause:hover:after {
     border:1px;
     background-color:#eee;
     z-index: 2;
-}
+}*/
 
 #album_art_mouse_target {
     width:30%;
@@ -200,6 +205,7 @@ menu .pause:hover:after {
 #main_play:active{
     top:33%;
 }
+
 #download_button{
     position:relative;
     cursor:pointer;
