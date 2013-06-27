@@ -4,13 +4,13 @@
     <title>Congratulatinos!</title>
 
     <!-- js includes begin -->
-    <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript" src="SoundManager/script/soundmanager2-nodebug.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="static/lib/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" src="static/lib/SoundManager/script/soundmanager2-nodebug.js"></script>
+    <script type="text/javascript" src="static/js/main.js"></script>
     <!-- js includes end -->
 
     <!-- css imports begin -->
-    <style type="text/css"> @import url("css/style.css"); </style>
+    <style type="text/css"> @import url("static/css/style.css"); </style>
     <!-- css imports end -->
 
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<img id ='image' src=Final_Art_450dpi.jpg>
+<img id ='image' src=static/img/Final_Art_450dpi.jpg>
 <div id ='download_frame'></div>
 <div id ='album_art_mouse_target'>
     <div id='album_art'>
@@ -31,25 +31,20 @@
 </div>
 <div id = 'player_mouse_target'>
     <div id = 'player'>
+        <div id ='song_title'>TEST</div>
         <menu>
             <button class="rw"></button>
             <button id ="playpause" class="play"></button>
             <button class="stop"></button>
             <button class="ff"></button>
         </menu>
-
-
-
         <div id = 'seekbar'>
             <div id = 'progress'></div>
         </div>
-        <div id ='song-title'>TEST</div>
-
     </div>
 </div>
 
 
 </body>
 </html>
-
 

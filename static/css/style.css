@@ -5,6 +5,19 @@
     padding: 0;
     overflow: hidden;
 }
+
+#song_title{
+    position:absolute;
+    bottom: 1.3em;
+    font-size: 40px;
+    font-style: bold;
+    font-family: helvetica;
+    color: white;
+    /*float:right;
+    font-size: 40pt;
+    align: center;
+    text-align:left;*/
+}
 #image {
 
     z-index: -1;
@@ -258,10 +271,4 @@ menu .pause:hover:after {
     /*right:50%;*/
     top:0;
     z-index:1;
-}
-#song-title{
-    float:right;
-    font-size: 40pt;
-    /*align: center;*/
-    text-align:left;
 }

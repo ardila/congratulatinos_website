@@ -11,6 +11,9 @@ var imH;
 var imW;
 var W;
 var H;
+
+var path_to_music = '/Users/Josh/Projects/congratulatinos_website/static/music/Congratulatinos/'
+
 soundManager.setup({
     url: 'SoundManager/swf',
     preferFlash: false,
@@ -19,12 +22,12 @@ soundManager.setup({
     wmode: 'transparent',
     useFastPolling: true,
     onready: function(){
-        for(i in songs){
+        for(i in songs) {
             var song_name = songs[i];
             if(i<12){
                 s = soundManager.createSound({
                     id: song_name,
-                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.wav',
+                    url: path_to_music+song_name+'.wav',
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -37,10 +40,10 @@ soundManager.setup({
                         animateToSong(songNum);
                     }
                 });
-            }else{
+            } else {
                 s = soundManager.createSound({
                     id: song_name,
-                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.wav',
+                    url: path_to_music+song_name+'.wav',
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -132,6 +135,7 @@ function updateSeekbar(position, duration, buffered){
 
 function animateToSong(songNum){
     I.stop();
+    $('#song_title').text(songs[songNum]);
     x = xs[songNum+1];
     y = ys[songNum+1];
     scale = scales[songNum+1];
@@ -336,9 +340,4 @@ $(document).ready(function(){
             sound.setPosition(offset);
         }
     }
-
-
-
-
-
 });
