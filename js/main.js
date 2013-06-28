@@ -118,7 +118,7 @@ function updateSeekbar(position, duration, buffered){
     playFraction =  parseFloat(position)/duration;
 //    console.log($('#progress').width())
     $('#progress').css('width', playFraction*100+'%');
-    $('#song-title').html(songs[songNum].replace(/_/g, ' ').toUpperCase());
+    $('#player').html(songs[songNum].replace(/_/g, ' ').toUpperCase());
     for(var i in buffered){
         region = buffered[i];
         if(i in existingRegions){
