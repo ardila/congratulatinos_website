@@ -12,9 +12,10 @@ var imW;
 var W;
 var H;
 soundManager.setup({
-    url: 'SoundManager/swf',
+    url: 'SoundManager/swf/soundmanager2_flash_xdomain',
+    debugFlash: true,
     preferFlash: false,
-    useFlashBlock: false,
+    useFlashBlock: true,
     useHighPerformance: true,
     wmode: 'transparent',
     useFastPolling: true,
@@ -24,7 +25,7 @@ soundManager.setup({
             if(i<12){
                 s = soundManager.createSound({
                     id: song_name,
-                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.wav',
+                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.ogg',
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -118,7 +119,7 @@ function updateSeekbar(position, duration, buffered){
     playFraction =  parseFloat(position)/duration;
 //    console.log($('#progress').width())
     $('#progress').css('width', playFraction*100+'%');
-    $('#player').html(songs[songNum].replace(/_/g, ' ').toUpperCase());
+    $('#song-title').html(songs[songNum].replace(/_/g, ' ').toUpperCase());
     for(var i in buffered){
         region = buffered[i];
         if(i in existingRegions){
@@ -182,7 +183,7 @@ $(document).ready(function(){
     ys = [.5, 0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
     scales = [1, 5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814];
     songNum = 0;
-    songs = ['Carmen','Bitter_Sunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun'];
+    songs = ['Carmen','Bittersunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun'];
     $('#ff').click(function(){
         songNum = (songNum+1)%13;
         animateToSong(songNum);
