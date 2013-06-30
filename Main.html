@@ -7,6 +7,11 @@
     <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
     <script type="text/javascript" src="SoundManager/script/soundmanager2.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+        $(window).load(function(){
+            $("#loading").hide();
+        })
+    </script>
     <!-- js includes end -->
 
     <!-- css imports begin -->
@@ -17,7 +22,9 @@
 
 </head>
 <body>
-
+<div id="loading">
+    <img src="loading.gif" alt="loading..">
+</div>
 <img id ='image' src=http://image.yogile.com/gn24p3zh/nfdjbvgox42qdcmlsa6qxg.jpg>
 <div id ='download_frame'>
     <form method="post" action="http://congratulatinos.com/email_script.php">

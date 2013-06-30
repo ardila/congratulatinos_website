@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
 }
 ol, ul {
     list-style: none;
@@ -319,7 +320,6 @@ menu .pause:hover:after {
 }
 
 form{
-    font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     font-weight:300;
     font-stretch:expanded;
     font-size: 1em;
@@ -333,7 +333,6 @@ form{
     /*align: center;*/
     text-align:center;
     color: rgba(0,0,0,0.9);
-    font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     font-weight:300;
     font-stretch:expanded;
     /*font-family: "HelveticaNeueUltraLight", "HelveticaNeue-Ultra-Light", "Helvetica Neue Ultra Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Arial", sans-serif;*/
@@ -341,4 +340,15 @@ form{
     /*font-stretch:normal;*/
     /*font-variant: small-caps;*/
 
+}
+
+#loading {
+    position:absolute;
+    width:300px;
+    top:50%;
+    left:50%;
+    margin-left:-150px;
+    text-align:center;
+    padding:7px 0 0 0;
+    font:bold 11px Arial, Helvetica, sans-serif;
 }
