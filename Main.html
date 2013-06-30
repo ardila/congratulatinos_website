@@ -12,9 +12,11 @@
             $("#loading").hide();
         })
     </script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
     <!-- js includes end -->
 
     <!-- css imports begin -->
+    <style type="text/css"> @import url("bootstrap/css/bootstrap.css"); </style>
     <style type="text/css"> @import url("css/style.css"); </style>
     <!-- css imports end -->
 
@@ -23,26 +25,33 @@
 </head>
 <body>
 <div id="loading">
-    <img src="loading.gif" alt="loading..">
+    <p>Patience, darling.</p>
+    <br>
+    <img style="top:50%" src="loading.gif" alt="loading..">
 </div>
 <img id ='image' src=https://dl.dropboxusercontent.com/u/18847953/Final_Art_450dpi.jpg>
-<div id ='download_frame'>
-    <form method="post" action="http://www.congratulatinos.com/email_script.php">
-        <table bgcolor=#ffffcc align=center>
-            <tr><td colspan=2><strong>Contact us using this form:</strong></td></tr>
-            <tr><td>Department:</td><td><select name="sendto"> <option value="ardila@gmail.com">General</option> <option value="support@mycompany.com">Support</option> <option value="sales@mycompany.com">Sales</option> </select></td></tr>
-            <tr><td><font color=red>*</font> Name:</td><td><input size=25 name="Name"></td></tr>
-            <tr><td><font color=red>*</font> Email:</td><td><input size=25 name="Email"></td></tr>
-            <tr><td>Company:</td><td><input size=25 name="Company"></td></tr>
-            <tr><td>Phone:</td><td><input size=25 name="Phone"></td></tr>
-            <tr><td>Subscribe to<br> mailing list:</td><td><input type="radio" name="list" value="No"> No Thanks<br> <input type="radio" name="list" value="Yes" checked> Yes, keep me informed<br></td></tr>
-            <tr><td colspan=2>Message:</td></tr>
-            <tr><td colspan=2 align=center><textarea name="Message" rows=5 cols=35></textarea></td></tr>
-            <tr><td colspan=2 align=center><input type=submit name="send" value="Submit"></td></tr>
-            <tr><td colspan=2 align=center><small>A <font color=red>*</font> indicates a field is required</small></td></tr>
-        </table>
-    </form>
-</div>
+<div id="download_frame">
+        <form>
+            <fieldset>
+                <label>Name</label>
+                <input id="name" type="text" placeholder="Mr. Señor">
+                <hr>
+                <label>Email (for download link)</label>
+                <input id="email" type="text" placeholder="mister@señor.com">
+                <label class="checkbox">
+                <input id="opt_in" type="checkbox" style="float:none; margin-top: -.15em;"> Bug me for shows and stuff
+                </label>
+            </fieldset>
+        </form>
+    <div id = "download_frame_buttons" class="buttons">
+        <button id="free" class="btn btn-success"><i class="icon-white icon-envelope"></i> FREE </button>
+        <button id="pay" class="btn btn-success"><i class="icon-white icon-shopping-cart"></i> PAY </button>
+        <button id ="psych"class="btn btn-danger"><i class="icon-white icon-remove"></i>PSYCH</button>
+    </div>
+
+    </div>
+
+
 <div id ='album_art_mouse_target'>
     <div id='album_art'>
         <div id = 'main_play'></div>

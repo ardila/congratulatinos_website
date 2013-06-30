@@ -1,4 +1,4 @@
-﻿/*Do a reset first*/
+/*Do a reset first*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -55,7 +55,7 @@ body {
     overflow: hidden;
 }
 #image {
-
+    max-width: none;
     z-index: -1;
     position: absolute;
 }
@@ -190,13 +190,13 @@ menu .pause:hover:after {
 #download_frame {
     display:none;
     position:absolute;
-    left:29%;
-    bottom:31%;
-    width:38%;
-    height:40%;
+    left:50%;
+    top:50%;
+    margin-top: -7.8em;
+    margin-left: -8.7em;
     text-align:center;
-    padding:15px;
-    border:1px;
+    padding:1em;
+    border-radius:.5em;
     background-color:#eee;
     z-index: 2;
 }
@@ -352,3 +352,7 @@ form{
     padding:7px 0 0 0;
     font:bold 11px Arial, Helvetica, sans-serif;
 }
+#download_frame_buttons{
+    margin-top: 1em
+    }
+

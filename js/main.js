@@ -183,8 +183,22 @@ $(document).ready(function(){
     });
     $('#download_button').click(function () {
         $('#download_frame').fadeIn('slow');
-        $('#album_art').hide();
+        $('#album_art_mouse_target').hide();
+        $('#image').fadeTo('slow', 0.5)
+    });
+    $('#free').live('click', function() {
+        name = $('#name').val()
+        email_adress = $('#email').val()
+        opt_in = $('#opt_in').val();
+        if(opt_in){
+            options = 'email='+email_adress'&name='+name;
+            $.get('email_script.php?functionName=email_songs_and_signup&'+options);
+            }else{
+            options = 'email='+email_adress;
+            $.get('email_script.php?functionName=email_songs&'+options);
+        }
 
+    return false;
     });
     I.load(function() {
         imW = I.width();
