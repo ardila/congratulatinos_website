@@ -20,12 +20,25 @@ soundManager.setup({
     wmode: 'transparent',
     useFastPolling: true,
     onready: function(){
+        var song_urls = ['http://k002.kiwi6.com/hotlink/616vszijgr/carmen.ogg',
+            'http://k002.kiwi6.com/hotlink/m2ud185211/bittersunset_red.ogg',
+            'http://k002.kiwi6.com/hotlink/juiz2j561f/more_soul.ogg',
+            'http://k002.kiwi6.com/hotlink/f0q9kv7uq5/ghost_in_the_machine.ogg',
+            'http://k002.kiwi6.com/hotlink/p90c9zah57/stairwell.ogg',
+            'http://k002.kiwi6.com/hotlink/bh88ma47gm/robber_barons.ogg',
+            'http://k002.kiwi6.com/hotlink/9m8ra9pys0/protocholic.ogg',
+            'http://k002.kiwi6.com/hotlink/vit231zj5t/cloudbreak.ogg',
+            'http://k002.kiwi6.com/hotlink/k4r1m1556l/underwater_voyage.ogg',
+            'http://k002.kiwi6.com/hotlink/l7z54xfkn5/how_you_want_it.ogg',
+            'http://k002.kiwi6.com/hotlink/w6bvx7mxrg/abandon_ship.ogg',
+            'http://k002.kiwi6.com/hotlink/lf637a3ae3/chinese_room.ogg',
+            'http://k002.kiwi6.com/hotlink/m2ud185211/bittersunset_red.ogg']
         for(i in songs){
             var song_name = songs[i];
             if(i<12){
                 s = soundManager.createSound({
                     id: song_name,
-                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.ogg',
+                    url: song_urls[i],
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -44,7 +57,7 @@ soundManager.setup({
             }else{
                 s = soundManager.createSound({
                     id: song_name,
-                    url: 'file:///Users/headradio/Documents/congratulatinos_website/Congratulatinos/'+song_name+'.wav',
+                    url: song_urls[i],
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
