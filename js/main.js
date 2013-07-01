@@ -149,6 +149,21 @@ function updateSeekbar(position, duration, buffered){
 
 }
 
+function email_songs(){
+        name = $('#name').val()
+        email_adress = $('#email').val()
+        opt_in = $('#opt_in').is(':checked');
+        console.log(opt_in);
+        if(opt_in){
+            options = 'email='+email_adress+'&name='+name;
+            url = 'email_script.php?functionName=email_songs_and_signup&'+options;
+            }else{
+            options = 'email='+email_adress+'&name='+name;
+            url = 'email_script.php?functionName=email_songs&'+options;
+        }
+        $.ajax({url:url});
+}
+
 function animateToSong(songNum){
     I.stop();
     x = xs[songNum+1];
@@ -186,20 +201,31 @@ $(document).ready(function(){
         $('#album_art_mouse_target').hide();
         $('#image').fadeTo('slow', 0.5)
     });
-    $('#free').live('click', function() {
-        name = $('#name').val()
-        email_adress = $('#email').val()
-        opt_in = $('#opt_in').val();
-        if(opt_in){
-            options = 'email='+email_adress'&name='+name;
-            $.get('email_script.php?functionName=email_songs_and_signup&'+options);
-            }else{
-            options = 'email='+email_adress;
-            $.get('email_script.php?functionName=email_songs&'+options);
-        }
-
-    return false;
+    $('#free').click(function() {
+        email_songs();
+        $('#thanks').show();
+        $('#download_frame').hide();
     });
+    $('#psych').click(function(){
+        $('#download_frame').hide();
+        $('#album_art_mouse_target').fadeIn('slow');
+        $('#image').fadeTo('slow',1);
+    });
+    $('#pay').click(function(){
+        email_songs();
+        $('#download_frame').hide();
+        $('#pay_frame').show();
+    });
+    $('#bye').click(function(){
+        $('#thanks').hide();
+        $('#album_art_mouse_target').fadeIn('slow');
+        $('#image').fadeTo('slow',1);
+    });
+    $("input[name='os0']").change(function(){
+        console.log($(this).val());
+        dollarAmount = parseFloat($(this).val()).toFixed(2);
+        $('#amount').attr('value', dollarAmount);
+});
     I.load(function() {
         imW = I.width();
         imH = I.height();

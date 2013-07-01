@@ -187,7 +187,7 @@ menu .pause:hover:before,
 menu .pause:hover:after {
     background-color: rgba(0, 0, 0, 0.8);
 }
-#download_frame {
+.popup_frame {
     display:none;
     position:absolute;
     left:50%;
@@ -350,7 +350,6 @@ form{
     margin-left:-150px;
     text-align:center;
     padding:7px 0 0 0;
-    font:bold 11px Arial, Helvetica, sans-serif;
 }
 #download_frame_buttons{
     margin-top: 1em

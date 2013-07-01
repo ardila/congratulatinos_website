@@ -1,26 +1,28 @@
 <?php
 require_once('vendor/phpmailer/phpmailer/class.phpmailer.php');
 if ($_REQUEST['functionName'] == 'email_songs') {
-    $to = $_REQUEST['email_address']
+    $to = $_REQUEST['email'];
+    echo $to;
     email_songs($to);
-}
+};
 if ($_REQUEST['functionName'] == 'email_songs_and_subscribe') {
-    $to = $_REQUEST['email_address']
-    $name = $_REQUEST['name']
+    $to = $_REQUEST['email'];
+    $name = $_REQUEST['name'];
     email_songs($to);
-    subscribe($to, $name)
-}
-subscribe($to, $name){
+    subscribe($to, $name);
+};
+function subscribe($to, $name){
 $emailFile = "/var/www/data/emails.txt";
 $emailfh = fopen($myFile, 'a') or die("can't open file");
 fwrite($emailfh, $to.", ");
 $nameFile = "/var/www/data/names.txt";
 $namefh = fopen($myFile, 'a') or die("can't open file");
 fwrite($namefh, $name);
-$formatted = "\"".$name."\" <".$to.">"
-$formattedfh = fopen("/var/www/data/formatted.txt", 'a') or die("can't open file");
+$formatted = "\"".$name."\" <".$to.">";
+$formattedFile = "/var/www/data/formatted.txt";
+$formattedfh = fopen($formattedFile, 'a') or die("can't open file");
 fwrite($formattedfh, $formatted); 
-}
+};
 function email_songs($to)
 {
     $from       = "congratulatinos@gmail.com";
@@ -31,14 +33,17 @@ function email_songs($to)
 </head>
 <body>
     <p><a href='linktosongs'>Click to download</a><p>
-    <h1> Thanks to: </h>
+    <h1> Thanks to: </h1>
     <a href='http://houseboatt.bandcamp.com/'>Ryan Decker</a>: Drums on Cloudbreak and Protocholic, coined 'Congratulatinos'<br>
-    <a href='https://www.facebook.com/JamesNevilleArt'>James Neville</a>:Album art<br>
-    <a href='linktoamandasmusic'>Amanda Glasser</a>:Sunn vocals on 'How You Want It'<br>
-    <a href='http://www.drewmazurek.com/Main.html'>Drew Mazurek</a>:Mix Engineer<br>
-    <a href='https://myspace.com/tenelevenths'>Roderick Lauver</a>:Co-wrote bass on Cloudbreak<br>
-    Wenning Xu: helped with album art
-    Gillian Grogan: Got us in the loop
+    <a href='https://www.facebook.com/JamesNevilleArt'>James Neville</a>: Album art<br>
+    <a href='saintjulien.bandcamp.com'>Amanda Glasser</a>: 'Sunn' vocals on 'How You Want It'<br>
+    <a href='http://www.drewmazurek.com/Main.html'>Drew Mazurek</a>: Mix Engineer<br>
+    <a href='https://myspace.com/tenelevenths'>Roderick Lauver</a>: Co-wrote bass on Cloudbreak<br>
+    <a href='http://trur.org/background/'>Richard Whalley</a>: Drums on Bittersunset Red, claps on Carmen<br>
+    Wenning Xu: helped with album art<br>
+    <a href='https://soundcloud.com/gilliangrogan'>Gillian Grogan</a>: Got us in the loop<br>
+    Max DeLiso and Josh Zheng: Helped with the website<br>
+    DLu, Tippens: Noise toleration<br>
 </body>
 </html>";
 
@@ -54,8 +59,8 @@ function email_songs($to)
     $mail->Username   = "AKIAJ67TTPIBW2QGLLKQ";  // SES SMTP  username
     $mail->Password   = "ApYOnDy8yTk4FQJ23eRDSAkk8NPBZPN2umsl4sXRMl8I";  // SES SMTP password
 
-    $mail->SetFrom($from, 'First Last');
-    $mail->AddReplyTo($from,'First Last');
+    $mail->SetFrom($from, 'Congratulatinos');
+    $mail->AddReplyTo($from,'Congratulatinos');
     $mail->Subject    = $subject;
     $mail->MsgHTML($body);
     $address = $to;
@@ -65,7 +70,7 @@ function email_songs($to)
     } else {
       echo "Message sent!";
     } 
-}
+};
     
 
     
