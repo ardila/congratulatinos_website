@@ -38,7 +38,8 @@ soundManager.setup({
             if(i<12){
                 s = soundManager.createSound({
                     id: song_name,
-                    url: song_urls[i],
+                    //url: song_urls[i],
+                    url: 'Ogg_no_art/'+song_name+'.ogg',
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -57,7 +58,8 @@ soundManager.setup({
             }else{
                 s = soundManager.createSound({
                     id: song_name,
-                    url: song_urls[i],
+                    //url: song_urls[i],
+                    url: 'Ogg_no_art/'+song_name+'.ogg',
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -199,7 +201,7 @@ $(document).ready(function(){
     $('#download_button').click(function () {
         $('#download_frame').fadeIn('slow');
         $('#album_art_mouse_target').hide();
-        $('#image').fadeTo('slow', 0.5)
+        $('#image').fadeTo('slow', 0.6)
     });
     $('#free').click(function() {
         email_songs();

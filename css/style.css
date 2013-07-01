@@ -98,7 +98,7 @@ menu button {
     height: 3em;
     margin-right: 1em;
     cursor: pointer;
-    top: 0em;
+    top: -.2em;
 }
 menu button:before,
 menu button:after {
