@@ -199,6 +199,7 @@ $(document).ready(function(){
         });
     });
     $('#download_button').click(function () {
+        console.log('click_detected');
         $('#download_frame').fadeIn('slow');
         $('#album_art_mouse_target').hide();
         $('#image').fadeTo('slow', 0.6)
@@ -218,8 +219,8 @@ $(document).ready(function(){
         $('#download_frame').hide();
         $('#pay_frame').show();
     });
-    $('#bye').click(function(){
-        $('#thanks').hide();
+    $('.btn-danger').click(function(){
+        $('.popup_frame').hide();
         $('#album_art_mouse_target').fadeIn('slow');
         $('#image').fadeTo('slow',1);
     });
@@ -238,7 +239,7 @@ $(document).ready(function(){
     ys = [.5, 0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
     scales = [1, 5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814];
     songNum = 0;
-    songs = ['Carmen','Bittersunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun'];
+    songs = ['Carmen','Bitter_Sunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun'];
     $('#ff').click(function(){
         songNum = (songNum+1)%13;
         animateToSong(songNum);

@@ -106,7 +106,7 @@ menu button:after {
     content: " ";
 }
 menu button:active {
-    top: .1em;
+    top: -.1em;
 }
 menu .play:before {
     z-index: 2;
