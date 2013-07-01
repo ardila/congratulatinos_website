@@ -5,22 +5,25 @@ if ($_REQUEST['functionName'] == 'email_songs') {
     echo $to;
     email_songs($to);
 };
+echo $_REQUEST;
 if ($_REQUEST['functionName'] == 'email_songs_and_subscribe') {
+    echo "what's up";
     $to = $_REQUEST['email'];
     $name = $_REQUEST['name'];
-    email_songs($to);
     subscribe($to, $name);
+    email_songs($to);
 };
 function subscribe($to, $name){
+echo "I made it in";
 $emailFile = "/var/www/data/emails.txt";
-$emailfh = fopen($myFile, 'a') or die("can't open file");
+$emailfh = fopen($emailFile, 'ab') or die("can't open file");
 fwrite($emailfh, $to.", ");
 $nameFile = "/var/www/data/names.txt";
-$namefh = fopen($myFile, 'a') or die("can't open file");
-fwrite($namefh, $name);
-$formatted = "\"".$name."\" <".$to.">";
+$namefh = fopen($nameFile, 'ab') or die("can't open file");
+fwrite($namefh, $name.", ");
+$formatted = "\"".$name."\" <".$to.">, ";
 $formattedFile = "/var/www/data/formatted.txt";
-$formattedfh = fopen($formattedFile, 'a') or die("can't open file");
+$formattedfh = fopen($formattedFile, 'ab') or die("can't open file");
 fwrite($formattedfh, $formatted); 
 };
 function email_songs($to)
