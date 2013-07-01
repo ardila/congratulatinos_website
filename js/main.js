@@ -156,7 +156,7 @@ function email_songs(){
         console.log(opt_in);
         if(opt_in){
             options = 'email='+email_adress+'&name='+name;
-            url = 'email_script.php?functionName=email_songs_and_signup&'+options;
+            url = 'email_script.php?functionName=email_songs_and_subscribe&'+options;
             }else{
             options = 'email='+email_adress+'&name='+name;
             url = 'email_script.php?functionName=email_songs&'+options;
