@@ -13,7 +13,7 @@ var W;
 var H;
 soundManager.setup({
     url: 'SoundManager/swf/soundmanager2_flash_xdomain',
-    debugFlash: true,
+    //debugFlash: true,
     preferFlash: false,
     useFlashBlock: true,
     useHighPerformance: true,
@@ -38,7 +38,8 @@ soundManager.setup({
             if(i<12){
                 s = soundManager.createSound({
                     id: song_name,
-                    url: song_urls[i],
+                    //url: song_urls[i],
+                    url: 'Ogg_no_art/'+song_name+'.ogg',
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -57,7 +58,8 @@ soundManager.setup({
             }else{
                 s = soundManager.createSound({
                     id: song_name,
-                    url: song_urls[i],
+                    //url: song_urls[i],
+                    url: 'Ogg_no_art/'+song_name+'.ogg',
                     whileplaying: function(){
                         updateSeekbar(this.position, this.durationEstimate, this.buffered);
                     },
@@ -149,6 +151,21 @@ function updateSeekbar(position, duration, buffered){
 
 }
 
+function email_songs(){
+        name = $('#name').val()
+        email_adress = $('#email').val()
+        opt_in = $('#opt_in').is(':checked');
+        console.log(opt_in);
+        if(opt_in){
+            options = 'email='+email_adress+'&name='+name;
+            url = 'email_script.php?functionName=email_songs_and_subscribe&'+options;
+            }else{
+            options = 'email='+email_adress+'&name='+name;
+            url = 'email_script.php?functionName=email_songs&'+options;
+        }
+        $.ajax({url:url});
+}
+
 function animateToSong(songNum){
     I.stop();
     x = xs[songNum+1];
@@ -182,21 +199,47 @@ $(document).ready(function(){
         });
     });
     $('#download_button').click(function () {
+        console.log('click_detected');
         $('#download_frame').fadeIn('slow');
-        $('#album_art').hide();
-
+        $('#album_art_mouse_target').hide();
+        $('#image').fadeTo('slow', 0.6)
     });
+    $('#free').click(function() {
+        email_songs();
+        $('#thanks').show();
+        $('#download_frame').hide();
+    });
+    $('#psych').click(function(){
+        $('#download_frame').hide();
+        $('#album_art_mouse_target').fadeIn('slow');
+        $('#image').fadeTo('slow',1);
+    });
+    $('#pay').click(function(){
+        email_songs();
+        $('#download_frame').hide();
+        $('#pay_frame').show();
+    });
+    $('.btn-danger').click(function(){
+        $('.popup_frame').hide();
+        $('#album_art_mouse_target').fadeIn('slow');
+        $('#image').fadeTo('slow',1);
+    });
+    $("input[name='os0']").change(function(){
+        console.log($(this).val());
+        dollarAmount = parseFloat($(this).val()).toFixed(2);
+        $('#amount').attr('value', dollarAmount);
+});
     I.load(function() {
         imW = I.width();
         imH = I.height();
         I.show();
         scaleToWindow();
     });
-    xs = [.5, 0.149667405764967, 0.885809312638581, 0.493348115299335, 0.537694013303769, 0.75609756097561, 0.319844789356984, 0.26219512195122, 0.85920177383592, 0.882414079822616, 0.67419623059867, 0.392184035476718, 0.893500554323725, 0.554878048780488];
-    ys = [.5, 0.66019955654102, 0.129711751662971, 0.536585365853659, 0.297671840354767, 0.320537694013304, 0.176829268292683, 0.416574279379157, 0.282012195121951, 0.679739467849224, 0.314232261640798, 0.437222838137472, 0.516213968957871, 0.51330376940133];
-    scales = [1, 5.156832298136646, 4.912721893491124, 4.512228260869565, 5.973021582733813, 7.983173076923077, 4.296248382923674, 8.060679611650485, 3.856023222060958, 5.16887159533074, 3.806303724928367, 4.91090573012939, 5.652765957446808, 2.202254641909814];
+    xs = [.5, 0.18, 0.87, 0.493348115299335, 0.535, 0.77, 0.29, 0.26, .865, 0.8955, 0.685, 0.392184035476718, 0.9, 0.55];
+    ys = [.5, 0.74, 0.10, 0.59, 0.31, 0.37, 0.2, 0.44, 0.32, 0.745, 0.287, 0.47, 0.57, 0.51330376940133];
+    scales = [1, 2.79, 3.85, 3.3, 4, 5.5, 2.8, 4.3, 3.705, 5.168, 3.806, 3, 5, 2.2];
     songNum = 0;
-    songs = ['Carmen','Bittersunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun'];
+    songs = ['Carmen','Bitter_Sunset_Red','More_Soul','Ghost_in_the_Machine','Stairwell','Robber_Barons', 'Protocholic', 'Cloudbreak','Underwater_Voyage','How_You_Want_It','Abandon_Ship','Chinese_Room', 'Baktun'];
     $('#ff').click(function(){
         songNum = (songNum+1)%13;
         animateToSong(songNum);
