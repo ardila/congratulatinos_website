@@ -69,3 +69,4 @@ a:hover {
 The fact that you got this means you are on our email list. REJOICE.
 </body>
 
+}
