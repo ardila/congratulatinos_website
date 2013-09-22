@@ -29,9 +29,9 @@ function repositionTo(newX, newY, newScale, w, h){
     I.css("width",W);
     I.css("height",H);
 }
-function appendText(element, text){
-    var new_item = $(text).hide();
-    element.append(new_item);
+function showHiddenDiv(element){
+    var new_item = element.children("div");
+//    element.append(new_item);
     new_item.show('fast');
     element.mouseleave(function(){
         new_item.hide('fast');
@@ -49,9 +49,20 @@ $(document).ready(function(){
         scaleToWindow();
     });
 
-
-    $('#Album').mouseenter(function(){
-        appendText($('#Album'), "<a>Bandcamp</a> <br> <a>Amazon</a> <br> <a>iTunes</a> <br> <a>Spotify</a>")
-
+    $('td').mouseenter(function(){
+        showHiddenDiv($(this));
     });
+    $('#signup').click(function() {
+        name = $('#name').val();
+        email_adress = $('#email').val();
+        opt_in = $('#opt_in').val();
+        if(opt_in){
+            options = 'email='+email_adress+'&name='+name;
+            $.get('email_script.php?functionName=email_songs_and_signup&'+options);
+        }else{
+            options = 'email='+email_adress;
+            $.get('email_script.php?functionName=email_songs&'+options);
+        }
+    });
+
 });
