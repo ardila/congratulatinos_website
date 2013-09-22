@@ -144,7 +144,46 @@ a:hover {
       echo "Message sent!";
     } 
 };
-    
+function confirm_email($to)
+{
+    $from       = "congratulatinos@gmail.com";
+    $subject    = "Mailing List";
+    $body       = "<head>
+
+<style>
+
+body {
+
+font-family: \"HelveticaNeueLight\", \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"HelveticaNeue\", \"Helvetica Neue\", \"TeXGyreHerosRegular\", \"Helvetica\", \"Tahoma\", \"Geneva\", \"Arial\", sans-serif;
+
+font-weight:300;
+
+font-stretch:expanded;
+
+
+
+}
+a {
+  color: #900;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  position: relative;
+}
+
+</style>
+
+<title>Test Mail</title>
+
+</head>
+
+<body>
+The fact that you got this means you are on our email list. REJOICE.
+</body>";
+
+};    
 
     
 ?>
