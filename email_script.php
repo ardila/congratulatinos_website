@@ -6,6 +6,13 @@ if ($_REQUEST['functionName'] == 'email_songs') {
     email_songs($to);
 };
 echo $_REQUEST;
+if ($_REQUEST['functionName'] == 'subscribe') {
+    echo "what's up now bitch";
+    $to = $_REQUEST['email'];
+    $name = $_REQUEST['name'];
+    subscribe($to, $name);
+    confirm_email($to);
+};
 if ($_REQUEST['functionName'] == 'email_songs_and_subscribe') {
     echo "what's up";
     $to = $_REQUEST['email'];
@@ -146,42 +153,55 @@ a:hover {
 };
 function confirm_email($to)
 {
+echo "the function got called";
     $from       = "congratulatinos@gmail.com";
     $subject    = "Mailing List";
     $body       = "<head>
 
 <style>
-
 body {
-
 font-family: \"HelveticaNeueLight\", \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"HelveticaNeue\", \"Helvetica Neue\", \"TeXGyreHerosRegular\", \"Helvetica\", \"Tahoma\", \"Geneva\", \"Arial\", sans-serif;
-
 font-weight:300;
-
 font-stretch:expanded;
-
-
-
 }
 a {
   color: #900;
   text-decoration: none;
 }
-
 a:hover {
   color: red;
   position: relative;
 }
-
 </style>
-
 <title>Test Mail</title>
-
 </head>
-
 <body>
 The fact that you got this means you are on our email list. REJOICE.
 </body>";
+echo "Im here now";
+    $mail       = new PHPMailer();
+    $mail->IsSMTP(true);            // use SMTP
+
+    $mail->SMTPDebug  = 1;        // enables SMTP debug information (for testing)
+                                    // 1 = errors and messages
+                                    // 2 = messages only
+    $mail->SMTPAuth   = true;                  // enable SMTP authentication
+    $mail->Host       = "tls://email-smtp.us-east-1.amazonaws.com"; // Amazon SES server, note "tls://" protocol
+    $mail->Port       = 465;                    // set the SMTP port
+    $mail->Username   = "AKIAJ67TTPIBW2QGLLKQ";  // SES SMTP  username
+    $mail->Password   = "ApYOnDy8yTk4FQJ23eRDSAkk8NPBZPN2umsl4sXRMl8I";  // SES SMTP password
+
+    $mail->SetFrom($from, 'Congratulatinos');
+    $mail->AddReplyTo($from,'Congratulatinos');
+    $mail->Subject    = $subject;
+    $mail->MsgHTML($body);
+    $address = $to;
+    $mail->AddAddress($address, $to);
+    if(!$mail->Send()) {
+      echo "Mailer Error: " . $mail->ErrorInfo;
+    } else {
+      echo "Message sent!";
+    } 
 
 };    
 
