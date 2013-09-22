@@ -32,10 +32,15 @@ td {
     font-weight:lighter;
     /*background: rgba(255,255, 255, 0.5);*/
 }
-
+img.subscribe-image{
+    display:None;
+}
 td:hover{
     /*background: rgba(255,0, 0, 1);*/
     color: white;
+}
+#calendarListButton1{
+    display:None;
 }
 a{
     text-decoration: none;
