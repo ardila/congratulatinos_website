@@ -1,117 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html style="
+    height: 100%;
+">
 <head>
-<link rel="icon" href="favicon.ico" type="image/x-icon"> 
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
-    <title>Congratulatinos!</title>
-
-    <!-- js includes begin -->
+    <title>Congratulatinos</title>
+    <style type="text/css"> @import url("css/style_main.css"); </style>
     <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript" src="SoundManager/script/soundmanager2-nodebug-jsmin.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript">
-        $(window).load(function(){
-            $("#loading").hide();
-        })
-    </script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- js includes end -->
-
-    <!-- css imports begin -->
-    <style type="text/css"> @import url("bootstrap/css/bootstrap.min.css"); </style>
-    <style type="text/css"> @import url("css/style.css"); </style>
-    <!-- css imports end -->
-
-    <meta charset="UTF-8">
-
+    <script type="text/javascript" src="js/index_js.js"></script>
 </head>
 <body>
-<div id="loading">
-    <p>Patience, darling.</p>
-    <br>
-    <img style="top:50%" src="loading.gif" alt="loading..">
-</div>
-<img id ='image' src=http://farm8.staticflickr.com/7425/9185300449_4c4104f96b_o.jpg>
-<div id="download_frame" class="popup_frame">
-        <form>
-            <fieldset>
-                <label>Name</label>
-                <input id="name" type="text" placeholder="Mr. Señor">
-                <hr>
-                <label>Email (for download link)</label>
-                <input id="email" type="text" placeholder="mister@señor.com">
-                <label class="checkbox">
-                <input id="opt_in" type="checkbox" style="float:none; margin-top: -.15em;"> Bug me for shows and stuff
-                </label>
-            </fieldset>
-        </form>
-    <div id = "download_frame_buttons" class="buttons">
-        <button id="free" class="btn btn-success"><i class="icon-white icon-envelope"></i> FREE </button>
-        <button id="pay" class="btn btn-success"><i class="icon-white icon-shopping-cart"></i>NAME YOUR PRICE</button>
-        <button class="btn btn-danger"><i class="icon-white icon-remove"></i>CLOSE</button>
-    </div>
-
-</div>
-<div id="thanks" class="popup_frame">
-    <h1>Thank you!</h1> 
-     <hr>
-     If you don't get it: <a href="mailto:congratulatinos@gmail.com">congratulatinos@gmail.com</a>
-    <hr>
-    <button class="btn btn-danger"><i class="icon-white icon-remove"></i>CLOSE</button>
-</div>
-<div id="pay_frame" class="popup_frame">
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="RDBC5AEKZYU3E">
-<input type="hidden" name="lc" value="US">
-<input type="hidden" name="item_name" value="Congratulatinos!">
-<input type="hidden" name="item_number" value="Album1.0">
-<input id = "amount" type="hidden" name="amount" value="0.00">
-<input type="hidden" name="currency_code" value="USD">
-<input type="hidden" name="button_subtype" value="services">
-<input type="hidden" name="tax_rate" value="0.000">
-<input type="hidden" name="shipping" value="0.00">
-<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+<img id ='image' src=Album_Art_1080p.jpg>
 <table>
-<tr><td><input type="hidden" name="on0" value="Name your price">Name your price</td></tr><tr><td><input id="entered_amount" type="text" name="os0" maxlength="200"></td></tr>
+    <tr>
+        <td id='Album'><h2>Album</h2>
+            <div class='hidden'>
+                <a href="Album.html">Web Player</a>
+                <br>
+                <a href="http://congratulatinos.bandcamp.com/">Bandcamp</a>
+                <br>
+                <a href="http://www.amazon.com/mp3-downloads/dp/B00DTWX7N8">Amazon</a>
+                <br>
+                <a href="https://itunes.apple.com/us/album/congratulatinos!/id670923767?ign-mpt=uo%3D4">iTunes</a>
+                <br>
+                <a href="http://open.spotify.com/album/1Z0AnX2xSQ1Kw1jtNVQ6OR">Spotify</a>
+            </div>
+        </td>
+        <td id='Shows'><h2>Shows</h2>
+            <div class="hidden">
+
+                <a href="https://www.google.com/calendar/feeds/3qdbjtssuo2m2685jgbkdomcog%40group.calendar.google.com/public/basic">
+                   View shows calendar
+                </a>
+                <br>
+                <a href="http://www.google.com/calendar/render?cid=https%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F3qdbjtssuo2m2685jgbkdomcog%2540group.calendar.google.com%2Fpublic%2Fbasic" target="_blank">
+                   Add to my calendar
+                </a>
+            </div>
+        </td>
+        <td id='Merch'><h2>Merch</h2>
+            <div class="hidden">
+                <a>Preorder album USBs</a>
+                <!--todo:make a t-shirt stuff-->
+                <!--<br>-->
+                <!--<a>Make a t-shirt</a>-->
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td id='Videos'><h2>Videos</h2>
+            <div class = "hidden">
+                <p><a href="http://vimeo.com/73388068">Magic</a></p>
+            </div>
+        </td>
+        <td id='MailingList'><h2>Mailing List</h2>
+            <div class="hidden">
+                <form>
+                    <fieldset style="border:none">
+                        <label for="name"></label><input id="name" type="text" placeholder="Name">
+                        <label for="email"></label><input id="email" type="text" placeholder="Email">
+                    </fieldset>
+                </form>
+                <a id="signup">Sign-up</a>
+            </div>
+        </td>
+        <td id='Server'><h2>Server</h2>
+            <div class="hidden">
+                <form>
+                    <fieldset style="border:none">
+                        <input id="name_server" type="text" placeholder="Name">
+                        <input id="email_server" type="text" placeholder="Email">
+                    </fieldset>
+                </form>
+                <a>Request credentials</a>
+            </div>
+        </td>
+    </tr>
 </table>
-<input type="image" id="paypal_button" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-<hr>
-<button class="btn btn-danger"><i class="icon-white icon-remove"></i>CLOSE</button>
-</div>
-
-<div id ='album_art_mouse_target'>
-    <div id='album_art'>
-        <div id = 'main_play'></div>
-        <div id = 'download_button'>
-            <div id = 'rectangle'></div>
-            <div id = 'triangle_down'></div>
-        </div>
-    </div>
-</div>
-<div id = 'player_mouse_target'>
-    <div id = 'player'>
-        <menu>
-            <button class="rw"></button>
-            <button id ="playpause" class="play"></button>
-            <button class="stop"></button>
-            <button class="ff"></button>
-        </menu>
-
-
-
-        <div id = 'seekbar'>
-            <div id = 'progress'></div>
-        </div>
-        <div id ='song-title'></div>
-
-    </div>
-</div>
-
 
 </body>
 </html>
-
-
