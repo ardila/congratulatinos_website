@@ -19,7 +19,7 @@ body {
 }
 h2{
     text-align: center;
-    font-weight:100;
+    font-weight:200;
 }
 td {
     width:33.333%;
@@ -29,12 +29,12 @@ td {
     0 4px 2px rgba(0,0,0,0.15),
     0 34px 30px rgba(0,0,0,0.15);
     color: white;
-    font-size:1.2em;
+    font-size:1.4em;
     /*text-align: center;*/
     text-transform: uppercase;
     /*font-variant:small-caps;*/
-    letter-spacing: .06em;
-    font-weight:100;
+    letter-spacing: .065em;
+    font-weight:150;
     /*background: rgba(255,255, 255, 0.5);*/
 }
 img.subscribe-image{
