@@ -17,19 +17,24 @@ body {
     z-index: -1;
     position: absolute;
 }
-h2{text-align: center}
+h2{
+    text-align: center;
+    font-weight:100;
+}
 td {
     width:33.333%;
     height:50%;
     text-shadow: 0 2px 0 black,
-    0 14px 10px rgba(0,0,0,0.3),
-    0 24px 2px rgba(0,0,0,0.15),
+    0 4px 10px rgba(0,0,0,0.3),
+    0 4px 2px rgba(0,0,0,0.15),
     0 34px 30px rgba(0,0,0,0.15);
     color: white;
-    font-size:2em;
+    font-size:1.2em;
     /*text-align: center;*/
-    font-variant: small-caps;
-    font-weight:lighter;
+    text-transform: uppercase;
+    /*font-variant:small-caps;*/
+    letter-spacing: .06em;
+    font-weight:100;
     /*background: rgba(255,255, 255, 0.5);*/
 }
 img.subscribe-image{
