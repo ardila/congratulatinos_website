@@ -4,7 +4,7 @@ html {
 }
 body {
     line-height: 1;
-    font-family:'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family:'Gill Sans','HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -20,17 +20,17 @@ body {
 h2{
     text-align: center;
     font-weight:100;
-    font-size: 2.5em;
+    font-size: 2.4em;
 }
 td {
     width:33.333%;
     height:50%;
-    text-shadow: 0 3px 0 black,
+    text-shadow: 0 2px 0 black,
     0 5px 10px rgba(0,0,0,0.3),
     0 4px 2px rgba(0,0,0,0.15),
     0 34px 30px rgba(0,0,0,0.15);
     color: white;
-    font-size:2em;
+    font-size:1.7em;
     /*text-align: center;*/
     text-transform: uppercase;
     /*font-variant:small-caps;*/

@@ -30,10 +30,11 @@ function repositionTo(newX, newY, newScale, w, h){
     I.css("height",H);
 }
 function showHiddenDiv(element){
-    var new_item = element.children("div");
+    var new_item = element.siblings("div");
 //    element.append(new_item);
     new_item.show('fast');
-    element.mouseleave(function(){
+    container = new_item.parents("td");
+    container.mouseleave(function(){
         new_item.hide('fast');
 
     });
@@ -49,7 +50,7 @@ $(document).ready(function(){
         scaleToWindow();
     });
 
-    $('td').mouseenter(function(){
+    $('h2').mouseenter(function(){
         showHiddenDiv($(this));
     });
     $('#signup').click(function() {
